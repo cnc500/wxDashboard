@@ -1,0 +1,2 @@
+$('#timer')
+console.log($('#timer'))
