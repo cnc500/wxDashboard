@@ -1,3 +1,16 @@
 p {
     font-size: 50px;
 }
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: navy;
+    color: aliceblue;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.title {
+    font-size: x-large;
+}
