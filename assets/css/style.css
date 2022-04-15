@@ -2,15 +2,17 @@ p {
     font-size: 50px;
 }
 
-header {
-    display: flex;
+ header {
+    /* display: flex; */
     justify-content: center;
     background-color: navy;
     color: aliceblue;
     padding-top: 1%;
     padding-bottom: 1%;
+    font-size: x-large; */
+
 }
 
 .title {
-    font-size: x-large;
+    /* font-size: x-large; */
 }
