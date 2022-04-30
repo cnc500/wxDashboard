@@ -8,3 +8,5 @@ function displayCureentDayTime() {
     // calls display displayCureentDayTime every second to display current
     // time every second
     setInterval(displayCureentDayTime, 1000);
+
+    
