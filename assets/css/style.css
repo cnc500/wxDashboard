@@ -1,4 +1,4 @@
-/* p {
+p {
     font-size: 50px;
 }
 
@@ -36,5 +36,14 @@ body {
 .currentWxBox {
     border-style: solid;
     border-color: rgb(194, 189, 189);
+    margin-bottom: 2%;
 
-} */
+}
+
+.forecastBox {
+    background-color: navy;
+    color: aliceblue;
+    margin-left: 2.5%;
+
+
+}
