@@ -13,13 +13,19 @@
       <h2 class = "title">Weather Dashboard</h2>
     </header>
     <main class="col-12 row">
-      <form class="searchInput form-group col-2 h-50">
+      <div class= "col-2">
+      <form class="searchInput form-group">
         <label for="inputCity" class="mb-2 text-lg-left font-weight-bolder">Search for a City:</label>
         <input type="text" class="form-control" id="inputCity" placeholder="San Diego">
         <button type="submit" id= "searchBtn" class="btn btn-primary col-md-12 mt-3 mb-3">Search</button>
         <div class="searchCities">          
         </div>
       </form>
+      <div class="cityList">
+
+
+      </div>
+    </div>
 
       <div class="col-10">
         <div class="currentWxBox">
@@ -33,48 +39,42 @@
           <h4 class="currentHumidity p-4"></h4>
           <h4 class="currentWind p-4"></h4>
           <h4 class="p-4 inline">UV Index: <span class="currentUV"></span> </h4>
-          <h4 class="currentUV inline"></h4>
         </div>
         <div class="row">
           <div class="forecastBox col-2">
             <h3 class="forecastDate">test</h3>
-            <img class="wxIconPlusOne" src="" alt="">
-            <p class="temperaturePlusOne"></p>
-            <p class="windPlusOne"></p>
-            <p class="humidityPlusOne"></p>
-
+            <img class="forecastWxIcon">
+            <h3 class="forecastTemperature"></h3>
+            <h3 class="forecastHumidity"></h3>
+            <h3 class="forecastWind"></h3>
           </div>
           <div class="forecastBox col-2">
             <h3 class="forecastDate">test</h3>
-            <img class="wxIconPlusTwo" src="" alt="">
-            <p class="temperaturePlusTwo"></p>
-            <p class="windPlusTwo"></p>
-            <p class="humidityPlusTwo"></p>
-
+            <img class="forecastWxIcon" src="" alt="">
+            <h3 class="forecastTemperature"></h3>
+            <h3 class="forecastHumidity"></h3>
+            <h3 class="forecastWind"></h3>
           </div>
           <div class="forecastBox col-2">
             <h3 class="forecastDate">test</h3>
-            <img class="wxIconPlusThree" src="" alt="">
-            <p class="temperaturePlusThree"></p>
-            <p class="windPlusThree"></p>
-            <p class="humidityPlusThree"></p>
-
+            <img class="forecastWxIcon" src="" alt="">
+            <h3 class="forecastTemperature"></h3>
+            <h3 class="forecastHumidity"></h3>
+            <h3 class="forecastWind"></h3>
           </div>
           <div class="forecastBox col-2">
             <h3 class="forecastDate">test</h3>
-            <img class="wxIconPlusFour" src="" alt="">
-            <p class="temperaturePlusFour"></p>
-            <p class="windPlusFour"></p>
-            <p class="humidityPlusFour"></p>
-
+            <img class="forecastWxIcon" src="" alt="">
+            <h3 class="forecastTemperature"></h3>
+            <h3 class="forecastHumidity"></h3>
+            <h3 class="forecastWind"></h3>
           </div>
           <div class="forecastBox col-2">
             <h3 class="forecastDate">test</h3>
-            <img class="wxIconPlusFive" src="" alt="">
-            <p class="temperaturePlusFive"></p>
-            <p class="windPlusFive"></p>
-            <p class="humidityPlusFive"></p>
-
+            <img class="forecastWxIcon" src="" alt="">
+            <h3 class="forecastTemperature"></h3>
+            <h3 class="forecastHumidity"></h3>
+            <h3 class="forecastWind"></h3>
           </div>
         </div>
   
