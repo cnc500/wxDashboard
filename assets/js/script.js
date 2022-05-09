@@ -4,7 +4,7 @@ var searchCity = [];
 var currentDate = [];
 var savedCities = [];
 
-// Upon startup, this function is executed to retrieve cities saved in local storage and store
+// Upon startup, this function is executed to retrieve cities saved in local storage and 
 // to display the as buttons beneath the city search butoon.
 window.onload = displaySavedCityBtns;
 function displaySavedCityBtns() {
