@@ -17,11 +17,16 @@ function displaySavedCityBtns() {
         cityList.appendChild(savedCityBtn);
         savedCityBtn.textContent = savedCities[i];
         savedCityBtn.setAttribute("class", "backgroundColor btn col-md-12 mt-3 mb-1");
-        // savedCityBtn.addEventListener("click",function(event) {
-        //     event.preventDefault();
-        //     var buttonCity = savedCities[i];
-        //     getCityCoordinates(buttonCity);
-        // })
+        console.log(savedCities[i]);
+
+        savedCityBtn.addEventListener("click",function(event) {
+            event.preventDefault();
+            console.log(event);
+            console.log(event.target);
+            var buttonCity = event.target.innerText;
+            console.log(buttonCity);
+            getCityCoordinates(buttonCity);
+        })
     }
 
 }
@@ -73,7 +78,7 @@ function getCityCoordinates(inputCity){
         .then(function(results){
             var possiblePlaces = results; 
             console.log(possiblePlaces);
-            if (possiblePlaces.country === '') {
+            if (!possiblePlaces[0]) {
                 alert('Please enter a valid city in our database.');
                 // return;
             } else {
@@ -87,11 +92,19 @@ function getCityCoordinates(inputCity){
 
                         getWeather(lat, lon);
                         return;
+                    } else {
+                        // var delayInMilliseconds = 1800; 
+                        // adds 1.8 second delay between questions which avoids conflict
+                        // in case user selects answer to next question before right or wrong
+                        // display is finished
+                        // setTimeout(function() {
+                        alert('Please enter a valid city that is associated with a state or country in our database.');
+                        inputCity = 'qqqqqqqq';
+//                        process.exit();
+                    // }, delayInMilliseconds);
+                
                     }
-                if (i === possiblePlaces.country.length) {
-                    alert('Please enter a valid city that is associated with a state or country in our database.');
-                } 
-                }
+                }                
             } 
         })
     })
