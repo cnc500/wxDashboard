@@ -99,7 +99,7 @@ function getCityCoordinates(inputCity){
                         // display is finished
                         // setTimeout(function() {
                         alert('Please enter a valid city that is associated with a state or country in our database.');
-                        inputCity = 'qqqqqqqq';
+                        // inputCity = 'qqqqqqqq';
 //                        process.exit();
                     // }, delayInMilliseconds);
                 
