@@ -24,4 +24,10 @@
   ###   GitHub Repository:  wxDashboard
   ###   Email:  cncarnevale@gmail.com
   
-  
+  ## Deployed Image
+
+  [screenshot](screenshotwx.png)
+
+  ## URL
+
+  https://cnc500.github.io/wxDashboard/
