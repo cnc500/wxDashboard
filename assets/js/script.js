@@ -3,8 +3,6 @@ var searchBtn = document.querySelector("#searchBtn");
 var searchCity = [];
 var currentDate = [];
 var savedCities = [];
-var storedCities = [];
-console.log(searchInput);
 
 // Upon startup, this function is executed to retrieve cities saved in local storage and store
 // to display the as buttons beneath the city search butoon.
@@ -17,54 +15,18 @@ function displaySavedCityBtns() {
         cityList.appendChild(savedCityBtn);
         savedCityBtn.textContent = savedCities[i];
         savedCityBtn.setAttribute("class", "backgroundColor btn col-md-12 mt-3 mb-1");
-        console.log(savedCities[i]);
-
         savedCityBtn.addEventListener("click",function(event) {
             event.preventDefault();
-            console.log(event);
-            console.log(event.target);
             var buttonCity = event.target.innerText;
-            console.log(buttonCity);
             getCityCoordinates(buttonCity);
         })
     }
-
 }
-
-// window.onload = displaySavedCityBtns;
-// function displaySavedCityBtns() {
-//     loadStoredCities();
-//     for (i = 0; i < storedCities.length; i++) {
-//         var savedCityBtn = document.createElement('button');
-//         var cityList=document.querySelector(".cityList");
-//         cityList.appendChild(savedCityBtn);
-//         savedCityBtn.textContent = storedCities[i];
-//         savedCityBtn.setAttribute("class", "backgroundColor btn col-md-12 mt-3 mb-1");
-//         savedCityBtn.addEventListener("click",function(event) {
-//             event.preventDefault();
-//             var buttonCity = storedCities[i];
-//             getCityCoordinates(buttonCity);
-//         })
-//     }
-
-// }
-
-// function loadStoredCities() {
-//     if (localStorage.getItem("savedCities")) {
-//         var savedCitiesStr=localStorage.getItem("savedCities");
-//         storedCities = JSON.parse(savedCitiesStr);
-//         console.log(storedCities);
-//       } else {
-//         storedCities = [];
-//         localStorage.setItem("savedCities", JSON.stringify(storedCities));
-//       }
-//     }
     
 //  This function retrieves and texts the current date in the current weather information box.
 function displayCurrentDay() {
     var currentDate = moment().format("MMMM Do, YYYY");
     today.textContent=currentDate;
-    console.log(currentDate);
     }
 
 // Using the OpenWeather API, this function retrieves the latitude and longitude of the city 
@@ -77,34 +39,23 @@ function getCityCoordinates(inputCity){
         response.json()
         .then(function(results){
             var possiblePlaces = results; 
-            console.log(possiblePlaces);
             if (!possiblePlaces[0]) {
                 alert('Please enter a valid city in our database.');
-                // return;
             } else {
-                saveCity(inputCity);
                 for (var i = 0; i < possiblePlaces.length; i++) {
-                var correctPlace = window.confirm('If your selected city is in ' + possiblePlaces[i].state + ', then select pess OK.  Otherwise press cancel.');
-                    if (correctPlace) {
+                    var correctPlace = window.confirm('If your selected city is in ' + possiblePlaces[i].state + ', then select pess OK.  Otherwise press cancel.');
+                    if (correctPlace) break;
+                }
+                if (correctPlace) {
                         var lat = possiblePlaces[i].lat;
                         var lon = possiblePlaces[i].lon;
                         searchCity = inputCity;
-
+                        saveCity(inputCity);
                         getWeather(lat, lon);
                         return;
                     } else {
-                        // var delayInMilliseconds = 1800; 
-                        // adds 1.8 second delay between questions which avoids conflict
-                        // in case user selects answer to next question before right or wrong
-                        // display is finished
-                        // setTimeout(function() {
                         alert('Please enter a valid city that is associated with a state or country in our database.');
-                        // inputCity = 'qqqqqqqq';
-//                        process.exit();
-                    // }, delayInMilliseconds);
-                
                     }
-                }                
             } 
         })
     })
@@ -131,7 +82,6 @@ function getWeather(lat, lon) {
       .then(function(response){
          response.json()
          .then(function(data) {
-            console.log(data);
             var weather = data;
             validatedCity.textContent=searchCity;
             displayCurrentDay();
@@ -147,7 +97,6 @@ function getWeather(lat, lon) {
             } else {
                 currentUV.setAttribute("style", "color: white; background-color: red");
             }
-            console.log(uvIndex);
             var iconUrl="http://openweathermap.org/img/wn/"+weather.current.weather[0].icon+".png";
             currentIcon.setAttribute("src",iconUrl);
             forecast(data.daily);
@@ -159,17 +108,11 @@ function getWeather(lat, lon) {
 // selected city including an appropriate weather icon for each day forecasted from the 
 // OpenWeather API. 
 function forecast(daily) { 
-    console.log(daily);
     for (var i=1; i<6; i++) {
-        console.log("daily:");
-        console.log(daily[i].dt);
         var date = moment.unix(daily[i].dt).format("MMMM Do, YYYY");
-        console.log(date);
-        console.log(document.getElementsByClassName("forecastDate")[i-1]);
         var forecastBox = document.getElementsByClassName("forecastDate")[i-1];
         forecastBox.textContent=date;
         var forecastWx = document.getElementsByClassName("forecastWxIcon")[i-1];
-        console.log(daily[i].weather[0]);
         var forecastIconUrl="http://openweathermap.org/img/wn/"+daily[i].weather[0].icon+".png";
         forecastWx.setAttribute("src", forecastIconUrl);
         var forecastTemperature = document.getElementsByClassName("forecastTemperature")[i-1];
@@ -189,20 +132,11 @@ function forecast(daily) {
 //  cities that can be displayed and clicked on to 12. When an 13th city is saved, it deletes 
 //  the oldest saved city button and the oldest city itself from local storage. 
 function saveCity(inputCity) {
-    console.log(inputCity);
     loadSavedCities();
     if (!savedCities.includes(inputCity)) {
         var newCity = inputCity;
-        console.log(newCity);
         savedCities.push(newCity);
         localStorage.setItem("savedCities", JSON.stringify(savedCities));
- 
-        console.log(savedCities);
-    
-    // localStorage.setItem("savedCities",inputCity);
-    // localStorage.getItem("inputCity");
-    // console.log(localStorage.getItem("inputCity"));
-    // for (i = 0; i < savedCities.length; i++) {}
         var savedCityBtn = document.createElement('button');
         var cityList=document.querySelector(".cityList");
         cityList.appendChild(savedCityBtn);
@@ -213,11 +147,9 @@ function saveCity(inputCity) {
             getCityCoordinates(buttonCity);
         })
         savedCityBtn.setAttribute("class", "backgroundColor btn col-md-12 mt-3 mb-1");
-    // savedCityBtn.setAttribute("id", inputCity );
-    // savedCityBtn.setAttribute("on-click", getCityCoordinates(inputCity) );
     }
-    if (savedCities.length > 3) {
-    savedCities.shift();
+    if (savedCities.length > 12) {
+        savedCities.shift();
         localStorage.setItem("savedCities", JSON.stringify(savedCities));
         cityList.innerHTML = '';
         displaySavedCityBtns();
@@ -231,7 +163,6 @@ function loadSavedCities() {
 if (localStorage.getItem("savedCities")) {
     var savedCitiesStr=localStorage.getItem("savedCities");
     savedCities = JSON.parse(savedCitiesStr);
-    console.log(savedCities);
   } else {
     savedCities = [];
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
