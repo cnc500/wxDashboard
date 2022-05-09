@@ -33,7 +33,7 @@ function displayCurrentDay() {
 // that the user inputs provided that the input city is a valid city. It calls both the saveCity 
 // and the getWeather functions.
 function getCityCoordinates(inputCity){
-  var cityCoordinates = 'http://api.openweathermap.org/geo/1.0/direct?q=' + inputCity + '&limit=5&appid=f920eb96530d47ec338cb2c2b187f0b6';
+  var cityCoordinates = 'https://api.openweathermap.org/geo/1.0/direct?q=' + inputCity + '&limit=5&appid=f920eb96530d47ec338cb2c2b187f0b6';
   fetch(cityCoordinates)
     .then(function(response){
         response.json()
@@ -97,7 +97,7 @@ function getWeather(lat, lon) {
             } else {
                 currentUV.setAttribute("style", "color: white; background-color: red");
             }
-            var iconUrl="http://openweathermap.org/img/wn/"+weather.current.weather[0].icon+".png";
+            var iconUrl="https://openweathermap.org/img/wn/"+weather.current.weather[0].icon+".png";
             currentIcon.setAttribute("src",iconUrl);
             forecast(data.daily);
          })
